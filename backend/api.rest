@@ -1,0 +1,113 @@
+###
+GET http://localhost:5000/api/
+
+
+
+// ------- USER ROUTES --------
+// Register route
+###
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+    "userName" : "POC User", 
+    "userEmail" : "adminpoc@gmail.com", 
+    "phoneNumber" : 9456767676, 
+    "userRole" : "POC", 
+    "userPassword" : "Admin@123", 
+    "businessEntity" : "ABG", 
+    "createdBy" : {
+        "creatingUserName" : "Application Super Admin",
+        "creatingUserRole" : "Application Super Admin",
+        "creatingUserBusinessEntity" : "ABG"    }, 
+    "cretedOn" : "13",
+    "userStatus": "active"
+}
+
+
+// Login route
+###
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+    "userEmail" : "adminPOC@gmail.com",
+    "userPassword" : "Admin@123"
+}
+
+// Get all users
+###
+GET http://localhost:5000/api/findallusers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA1YzQ4NDk4ZDQwYjI3MzZiNThmNGYiLCJpYXQiOjE2Nzg5NDMyMDh9.LzZSHVba-nqvzsra49XqLCO8YKorOqcgfNIpqE8lhio
+
+// Update user
+###
+PUT http://localhost:5000/api/userupdate/63ff1fb26a5482d1ff461118
+
+
+// Logout user
+###
+POST https://localhost:5000/api/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA1YzQ4NDk4ZDQwYjI3MzZiNThmNGYiLCJ1c2VyRW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyUm9sZSI6IkFkbWluIiwiaWF0IjoxNjc4MjU4NTg0fQ.NCO4AS8ThZJ3TGQKFm9WguckAxwPQ7tJvmdKvQLzzf4
+
+
+
+// ------- RBAC ROUTES --------
+// Get route for all the roles
+###
+POST http://localhost:5000/api/getallroles
+
+{
+    "businessEntity" : "ABG"
+}
+
+// Support, super admin, 
+
+// Get route to find data on the basis of roleName, moduleName, serviceGroupName
+###
+GET http://localhost:5000/api/getallpermissions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA1YzQ4NDk4ZDQwYjI3MzZiNThmNGYiLCJpYXQiOjE2Nzg5NDMyMDh9.LzZSHVba-nqvzsra49XqLCO8YKorOqcgfNIpqE8lhio
+
+{
+    "roleName" : "Super Admin", 
+    "businessEntity": "ABG"
+}
+
+// Post route for adding new role and its permissions
+###
+POST http://localhost:5000/api/addrole
+Content-Type: application/json
+
+{
+    "roleName": "Tata_SUPER_ADMIN",
+    "permissions": [{"moduleName": "Billing", "modulePermissions": ["view", "add"]},{"moduleName": "Raise Ticket", "modulePermissions": ["view", "add"]}, {"moduleName": "Subscription", "modulePermissions": ["view", "add"]}],
+    "createdBy" : "Application Super Admin",
+    "createdOn" : "2023-03-02",
+    "associatedBusinessEntity" : "Tata"
+}
+
+// GET Single Role
+###
+GET http://localhost:5000/api/getsinglerole/64180cd5ea359710a45990c8
+
+// GET all the roles on the basis of business entity name
+###
+POST http://localhost:5000/api/beroles
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2Nzk0NjcwMTV9.TWiyVqVGwT2g8vtzN-jDokQ6iTx47-bKJriS8FxHdZQ
+
+{
+    "businessEntityName" : "ABG"
+}
+
+###
+POST http://localhost:5000/api/getallpermissions
+Content-Type: application/json
+
+{
+    "roleName": "Application Super Admin",
+  "moduleName": "Service Catelogue",
+  "serviceGroupName": "Security Services"
+}

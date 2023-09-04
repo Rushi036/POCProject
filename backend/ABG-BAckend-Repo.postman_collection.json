@@ -1,0 +1,862 @@
+{
+	"info": {
+		"_postman_id": "e107fa49-0269-4027-9259-2c8b55bce0ef",
+		"name": "ABG-BAckend-Repo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25964322"
+	},
+	"item": [
+		{
+			"name": "Main Route",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						""
+					]
+				},
+				"description": "This request is just to verify that backend server is running and api is running properly."
+			},
+			"response": []
+		},
+		{
+			"name": "USER => Register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEyOTIzOTR9.tMRgyqH6sUrFLGz-Vd_ar7jBVF8BZfZYlIxThHrGAd4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\" : \"Application Super Admin\", \r\n    \"userEmail\" : \"abgadmin@gmail.com\", \r\n    \"phoneNumber\" : 9456767676, \r\n    \"userRole\" : \"Super Admin\", \r\n    \"userPassword\" : \"admin123\", \r\n    \"businessEntity\" : \"ABG\", \r\n    \"createdBy\" : {\r\n        \"creatingUserName\" : \"Application Super Admin\",\r\n        \"creatingUserRole\" : \"Application Super Admin\",\r\n        \"creatingUserBusinessEntity\" : \"ABG\"\r\n    }, \r\n    \"cretedOn\" : \"13\",\r\n    \"userStatus\": \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "This route is used to add the credentials for a new user.  \nThis route require an authentication token in the headers while sending all the details. The data send will be in the req body form in the json format as shown in the example."
+			},
+			"response": []
+		},
+		{
+			"name": "USER => Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userEmail\" : \"abgadmin@gmail.com\",\r\n    \"userPassword\" : \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "This route will be used to login into the system using the \"userEmail\" and \"userPassword\" as req body."
+			},
+			"response": []
+		},
+		{
+			"name": "USER => Find All Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEyOTIzOTR9.tMRgyqH6sUrFLGz-Vd_ar7jBVF8BZfZYlIxThHrGAd4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/findallusers",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"findallusers"
+					]
+				},
+				"description": "This route is used to get all the users details. Including their roles and permissions.  \nThis route will also require an authentication token to validate the user."
+			},
+			"response": []
+		},
+		{
+			"name": "USER => Find BE Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEyOTIzOTR9.tMRgyqH6sUrFLGz-Vd_ar7jBVF8BZfZYlIxThHrGAd4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/findbeusers/ABG",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"findbeusers",
+						"ABG"
+					]
+				},
+				"description": "This route is used to get all the users details for a particular Business Entity (only user details excluding permissions) on the basis of the business entity name. Business Entity name is send in the params with the request.  \nThis route will also require an authentication token in the headers to validate the user."
+			},
+			"response": []
+		},
+		{
+			"name": "USER => Find Single User by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEyOTIzOTR9.tMRgyqH6sUrFLGz-Vd_ar7jBVF8BZfZYlIxThHrGAd4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/getsingleuser/6412af5d42167d5e8633a85c",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"getsingleuser",
+						"6412af5d42167d5e8633a85c"
+					]
+				},
+				"description": "This route is used to get the user details for a particular Business Entity (only user details excluding permissions) on the basis of the user _id. _id for that user is send in the params with the request.  \nThis route will also require an authentication token in the headers to validate the user."
+			},
+			"response": []
+		},
+		{
+			"name": "USER => User Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\" : \"Application Super Admin\",\r\n    \"phoneNumber\" : \"0987654321\",\r\n    \"userPassword\" : \"admin123\",\r\n    \"userStatus\" : \"Active\",\r\n    \"userRole\" : \"ABG Super Admin\",\r\n    \"userEmail\" : \"abgadmin@gmail.com\",\r\n    \"loggedInUser\": \"Application Super Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/userupdate/6412af5d42167d5e8633a85c",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"userupdate",
+						"6412af5d42167d5e8633a85c"
+					]
+				},
+				"description": "This route is used to update the user details for a particular user (only user details excluding permissions can be edited) on the basis of the user _id. _id for that user is send in the params with the request. Also, only the user who has created that user can edit the user details.  \nThis route will also require an authentication token in the headers to validate the user."
+			},
+			"response": []
+		},
+		{
+			"name": "USER => Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGV0YWlscyI6eyJfaWQiOiI2NDA1YzQ4NDk4ZDQwYjI3MzZiNThmNGYiLCJ1c2VyTmFtZSI6Imthcm1hbnNodXN3YW1pIiwidXNlckVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOjk0NTY3Njc2NzYsInVzZXJSb2xlIjoiQWRtaW4iLCJidXNpbmVzc0VudGl0eSI6IkFCRyIsImNyZWF0ZWRCeU5hbWUiOiJBQkdfQWRtaW4iLCJjcmV0ZWRPbiI6IjIwMjMtMDMtMDZUMTA6NDY6MjguMDI5WiIsInVwZGF0ZWRCeSI6W10sInVwZGF0ZWRPbiI6W10sInVzZXJTdGF0dXMiOiJhY3RpdmUiLCJfX3YiOjB9LCJpYXQiOjE2Nzg0NDE1OTV9.kMJ_QBjDzzgSlvehFN-c8lS1_YmwJmbx7J_DPv6X6IA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/logout",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				},
+				"description": "This is the simple get logout route to logout the user and end the token session.\n\nThis will also require an authentication token to logout."
+			},
+			"response": []
+		},
+		{
+			"name": "BE => Add Business Entity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyName\" : \"TATA\",\r\n    \"companyAddress\" : \"wolf of the red street\",\r\n    \"city\" : \"Mumbai\",\r\n    \"state\" : \"Maharashtra\",\r\n    \"pincode\" : 343434,\r\n    \"country\" : \"USA\",\r\n    \"contactPersonName\" : \"karmanshu\",\r\n    \"contactPersonPhoneNumber\" : 1234567898,\r\n    \"contactPersonEmailAddress\" : \"honey@redhat.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/addbusinessentity",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"addbusinessentity"
+					]
+				},
+				"description": "This route is used to add the Business Entity details.\n\nWe will be needing the token for authentication while using this route so kindly login 1st to use this route.\n\nSending all the data in the req body of the form in the json format to save it in the db."
+			},
+			"response": []
+		},
+		{
+			"name": "BE => Get All Business Entity Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA5ODM3ZGY2YzU3ZDA1MTY0ZmFkZTgiLCJpYXQiOjE2Nzg2ODM4OTN9.9VpAMDNm0FRi1vPpYPbD9sGknuIBD_GlhQtKMQyA3kE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/getallbe",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"getallbe"
+					]
+				},
+				"description": "This route is used to get all the details of the Business Entities in our system. This also requires an authentication to get the response."
+			},
+			"response": []
+		},
+		{
+			"name": "BE => Get Data for a single Business Entity",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/individualbe/ABG",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"individualbe",
+						"ABG"
+					]
+				},
+				"description": "This route is used to get all the data of a single business entity by it's name.  \nSending the \"companyName\" in the params to find the data for a single business enity. This also requires an authentication token to access the data."
+			},
+			"response": []
+		},
+		{
+			"name": "BE => Update a single Business Entity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyName\" : \"TATA\",\r\n    \"companyAddress\" : \"wolf of the red street1\",\r\n    \"city\" : \"Mumbai\",\r\n    \"state\" : \"Maharashtra\",\r\n    \"pincode\" : 343434,\r\n    \"country\" : \"USA\",\r\n    \"contactPersonName\" : \"karmanshu\",\r\n    \"contactPersonPhoneNumber\" : 1234567898,\r\n    \"contactPersonEmailAddress\" : \"honey@redhat.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/updatebe/64211868c810bc3425d7ffa1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"updatebe",
+						"64211868c810bc3425d7ffa1"
+					]
+				},
+				"description": "This route is used to edit the single Business Entity details. We are sending the business entity id in the req params and all the details to update inside the req body.\r\nThis route will use an authentication token to use it."
+			},
+			"response": []
+		},
+		{
+			"name": "SERVICE => Get All Sevices Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2NzkzMDcxMzR9.DWxbJv-MjnLar5O6b1Yxtgmo5tnYWCo2rQZVyIIrHkI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/getallservices",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"getallservices"
+					]
+				},
+				"description": "This get route is used to get all the data for the services inside the service catelogue."
+			},
+			"response": []
+		},
+		{
+			"name": "SERVICE => Get Active Service",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/getactiveservices",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"getactiveservices"
+					]
+				},
+				"description": "This get route is used to fetch the data for all the active services."
+			},
+			"response": []
+		},
+		{
+			"name": "SERVICE => Add Service Catelogue Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2NzkzMDcxMzR9.DWxbJv-MjnLar5O6b1Yxtgmo5tnYWCo2rQZVyIIrHkI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serviceGroupName\": \"Datacenter Services\",\r\n    \"serviceName\": \"Infrastructure as Service (IaaS)\",\r\n    \"productDescription\": {\r\n        \"description\": \"Infrastructure as a Service provides bundled compute and Operating system capabilities on pay-per-use basis. This service offers you scalable and highly available compute capabilities without the large capital expenses incurred in owning Server infrastructure.\",\r\n        \"keyPoints\": [\"Virtualized compute capability with committed high availability.\", \"Standard operating system capabilities (Windows/Linux).\", \"IaaS is integrated with services such as Storage as Service, Server Management service to provide a complete, secure solution for computing and storage across a wide range of applications.\", \"Offers standard and customized configurations.\", \"High agility with on demand scalable options\", \"Highly secured infrastructure with secure multi-tenancy features\", \"Guaranteed high levels of Server uptime in terms with proactive automated monitoring.\", \"24X7 ITIL based helpdesk support.\", \"ITIL/ITSM based standardization, automation, and best practices to support operations.\"]\r\n    },\r\n    \"serviceScope\": [\"Service scope includes all Aditya Birla Group Companies that are connected to AVBIH network.\"],\r\n    \"prerequisite_Dependency\": [\"NA\"],\r\n    \"featureList\": [\r\n        {\r\n          \"featureName\": \"Administration Services\",\r\n          \"deliverables\": [\"Provision, build and configure new server infrastructure.\", \"Add, modify, and delete System configuration.\", \"Server Compute Resource Management.\"]\r\n        },\r\n        {\r\n          \"featureName\": \"Maintenance and Support Services\",\r\n          \"deliverables\": [\"Provide 24X7 ITIL based helpdesk to manage incidents, changes, and troubleshoot problems.\", \"Provide incident management support which includes:\", \"Call logging, tracking, and reporting.\", \"Incident escalation and circumvention according to documented SOP.\", \"Employ standardized change management processes and procedures for prompt and efficient handling of all changes.\", \"Provide problem management for failures preventing incident recurrence through comprehensive RCA and permanent fixes\"]\r\n        },\r\n        {\r\n          \"featureName\": \"Monitoring and Alerting Services\",\r\n          \"deliverables\": [\"Monitor server utilizations.\"]\r\n        },\r\n        {\r\n          \"featureName\": \"Reporting Services\",\r\n          \"deliverables\": [\"Service availability\", \"Call statistics and incident reports.\"]\r\n        },\r\n        {\r\n          \"featureName\": \"Value Added Services\",\r\n          \"deliverables\": [\"SLA Based delivery & request provisioning.\", \"24 X 7 monitoring and administration by the skilled resources\", \" ITIL framework based ticketing tool which helps to track request and changes.\", \"Deployment and Configuration changes of the instances i.e., provisioning of new virtual machines and configuration changes on existing virtual machines\", \"Data transfer in BMCSL cloud towards Intranet i.e., in AVBIH network is complimentary. Data transfer 'in' and 'out', refers to application data which is sent in and out of the BMCSL Private cloud towards WAN (AVBIH).\", \"Operating system license for Windows and Redhat Linux operating system I already included as part server. Customer may not need to bring separate licenses for these operating systems.\"]\r\n        }\r\n    ],\r\n    \"serviceExclusions\": [\"Application Feasibility on Virtual Environment.\", \"Application performance tuning.\", \"Application/OS Cluster Configuration.\", \"Application-Level Redundancy.\", \"Operating system/Application version upgrades.\"],\r\n    \"serviceDelivery\": {\r\n        \"serviceInitiation\": \"To avail this service e-mail request to abg.servicedesk@adityabirla.com\",\r\n        \"serviceSupport\": \"To log problems and issues with this product access the provided Ticket logging portal.\"\r\n    },\r\n    \"serviceLevelSpecifications\": [\r\n        {\r\n          \"serviceParameter\": \"Service Availability\",\r\n          \"serviceLevelDescription\": [\"Service targets Server Infrastructure availability of 99.5% (less than 4 hours of downtime monthly).\"]\r\n        },\r\n        {\r\n          \"serviceParameter\": \"Service Provisioning\",\r\n          \"serviceLevelDescription\": [\"Service targets to provision infrastructure within 4 business days of receiving request from the customer. This is applicable as per Plans offered in Service Order Form.\"]\r\n        },\r\n        {\r\n          \"serviceParameter\": \"Service Response & Resolution\",\r\n          \"serviceLevelDescription\": [\"Service ensures response time commitments for incidents are met 99% of the time for all incidents and service requests. Service response time commitments for incidents are categorized by severity of incidents.\", \"For severity 1 incidents, response time will be within 30 minutes.\", \"For severity 2 incidents, response time will be within 45 minutes.\", \"For severity 3 incidents, response time will be within 60 minutes.\", \"For all service requests, response time will be within 60 minutes\"]\r\n        }\r\n    ],\r\n    \"baseCost\": 50000,\r\n    \"billingType\": \"Monthly\",\r\n    \"serviceStatus\": \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/addservice",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"addservice"
+					]
+				},
+				"description": "This post route is used to add a new service data in the service catelogue database. We are sending all the data in the req body in the same format as ashown in the example. \r\nThis route can only be used by the super admin till now.\r\nAlso, service name should be unique while enting the data.\r\nThis route will require an authentication token to use."
+			},
+			"response": []
+		},
+		{
+			"name": "SERVICE => Get Data for a Single Service",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/getSingleService/641833284adf71358c20a5cc",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"getSingleService",
+						"641833284adf71358c20a5cc"
+					]
+				},
+				"description": "This get route is used to fetch the data for a single service by its _id.  \nSending the \"id\" in the req params to get all the data by the service name.  \nThis route will require an authentication token to use it."
+			},
+			"response": []
+		},
+		{
+			"name": "SERVICE => Update the Service",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serviceGroupName\" : \"Security Services\",\r\n    \"serviceName\" : \"Data Leakage Prevention – Network\",\r\n    \"productDescription\" : {\r\n        \"description\" : \"Data leakage prevention service enables businesses to secure, protect, monitor and record user data in motion.\",\r\n        \"keyPoints\" : [\"Protect and monitor accidental and intentional data leak\", \"Protect critical business data and intellectual property\", \"Prevents reputational loss due to data leakage\"]\r\n    },\r\n    \"serviceScope\" : [\"Service scope includes Aditya Birla Group Companies using AVBIH central internet gateway.\", \"This service is restricted to protect, monitor and record web and email traffic flowing out of central internet gateway.\"],\r\n    \"prerequisite_Dependency\" : [\"Every user must have AD ID\" , \"E-mail ID of user must be mapped with AD ID\"],\r\n    \"featureList\" : [\r\n        {\r\n            \"featureName\" : \"Administration Services\",\r\n            \"deliverables\" : [\"Configure policies as per the business requirement\" , \"Fine-tune DLP policies based on business request.\" , \"Configuration of policy exceptions as per business request\"]\r\n        }, \r\n        {\r\n            \"featureName\" : \"DLP Policy\",\r\n            \"deliverables\" : [\"Keywords\" , \"Fingerprinting of databases\", \"Fingerprinting of files and folders\"]\r\n        }\r\n    ],\r\n    \"serviceExclusions\" : [\"Identify information assets and owners\", \"Classification of documents\", \"Conduct impact assessment\"],\r\n    \"serviceDelivery\" : {\r\n        \"serviceInitiation\" : \"To avail this service e-mail request to soc.support@adityabirla.com\",\r\n        \"serviceSupport\" : \"To log problems and issues with this product call Service Desk at +91-22-66928734\"\r\n    },\r\n    \"serviceLevelSpecifications\" : [\r\n        {\r\n            \"serviceParameter\" : \"Service Availability\",\r\n            \"serviceLevelDescription\" : [\"Service targets uptime of 99% (less than 7.3 hours of downtime monthly)\"]\r\n        },\r\n        {\r\n            \"serviceParameter\" : \"Service Response\",\r\n            \"serviceLevelDescription\" : [\"For severity 1 incidents, response time will be within 15 minutes\" , \"For severity 2 incidents, response time will be within 30 minutes\" , \"For severity 3 incidents, response time will be within 60 minutes\" , \"For all service requests, response time will be within 120 minutes\"]\r\n        }\r\n    ],\r\n    \"baseCost\": 50000,\r\n    \"billingType\" : \"Monthly\",\r\n    \"serviceStatus\" : \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/updateservice/6409739c2f8a72677e738650",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"updateservice",
+						"6409739c2f8a72677e738650"
+					]
+				},
+				"description": "This route will be used to update a single service using its service id. \r\nSeding the service id into the req params along with all the data of the service into the req body.\r\nThis route needs an authentication token to use it."
+			},
+			"response": []
+		},
+		{
+			"name": "RBAC => Get All Roles & Permissions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/getallrolesandpermissions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"getallrolesandpermissions"
+					]
+				},
+				"description": "This get api is used to get all the roles and permissions in our db.\r\nThis route needs an authentication token to access the data."
+			},
+			"response": []
+		},
+		{
+			"name": "RBAC => Get BE Roles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/beroles/ABG",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"beroles",
+						"ABG"
+					]
+				},
+				"description": "This get route is used to get all the roles only on the basis of the business entity.  \nSending the business entity name inside the req params.  \nThis route will require an authentication token to fetch the data."
+			},
+			"response": []
+		},
+		{
+			"name": "RBAC => Get BE Roles & Permissions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2ODEzNjAyNzR9.RiuUz7FiEw8egyOrkq3Qgv3Hla1XLhy70GBMRBwEwqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/beroleandpermissions/ABG",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"beroleandpermissions",
+						"ABG"
+					]
+				},
+				"description": "This get route is used to get all the roles and permissions on the basis of the business entity name.  \nSending the business entity name inside the req params.  \nThis route will require an authentication token to fetch the data."
+			},
+			"response": []
+		},
+		{
+			"name": "RBAC => Add New Role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEyYWY1ZDQyMTY3ZDVlODYzM2E4NWMiLCJpYXQiOjE2NzkzOTI5MTd9.C5C9OcLyTwx3jUzSuueBxKRHwCbHhseZ9HfOz9N1ZGs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roleName\": \"Super Admin\",\r\n    \"permissions\": [\r\n        { \r\n            \"moduleName\": \"Service Catelogue\", \r\n            \"serviceGroup\": [\r\n                { \r\n                    \"serviceGroupName\": \"SECURITY SERVICES\",\r\n                    \"services\": [\r\n                        {\r\n                            \"serviceName\" : \"Data Leakage Prevention – Network\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Remote Security Device Management\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Remote Access Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Secure Cloud Proxy Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Secure Web Service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"EDR with Next Gen Anti-Virus\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Protection Suite – Data Centre\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"WAF as a service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"SIEM as a service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        }\r\n                    ] \r\n                },\r\n                {\r\n                    \"serviceGroupName\": \"Network Services\",\r\n                    \"services\": [\r\n                        {\r\n                            \"serviceName\" : \"Datacenter Switching Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Managed Network Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Shared Network Port Services (SNPS)\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Protection Suite for Network Devices\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Managed Customer Device Equipment Services – Routers, SDWAN Device Management, LAN Switch Management & Wireless Access point\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"DEDICATED NETWORK PORT SERVICES (DNPS)\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"LOCAL INTERNET BREAKOUT SERVICES (LIBS)\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"WIPS MANAGEMENT SERVICE\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"SERVICE EXCLUSION PARAMETERS\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"serviceGroupName\": \"Cloud Connectivity Service\",\r\n                    \"services\": [\r\n                        {\r\n                            \"serviceName\" : \"Cloud Connectivity Service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"serviceGroupName\": \"Datacenter Services\",\r\n                    \"services\": [\r\n                        {\r\n                            \"serviceName\" : \"Infrastructure as Service (IaaS)\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Remote Hypervisor Management\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Remote Server Management Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Server Management Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Storage Management Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Backup and Restore Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Cloud Backup and Restore Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Cloud Managed Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Datacenter Co-location Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Storage as a Service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Datacenter Switching\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Remote Backup and Restore Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Database Management Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"serviceGroupName\": \"Infra-Apps Services\",\r\n                    \"services\": [\r\n                        {\r\n                            \"serviceName\" : \"Server Management Services – SCCM Primary Server\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Active Directory Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Remote SCCM Secondary Server & BDP Management\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Secure E-mail Gateway Services\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Identity and Access Management\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Privileged Identity Management Services (PIM)\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"O365 Email and Cloud Support\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"Cloud SMTP relay service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        },\r\n                        {\r\n                            \"serviceName\" : \"AD Federation Service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"serviceGroupName\": \"Cloud Konect Service\",\r\n                    \"services\": [\r\n                        {\r\n                            \"serviceName\" : \"Cloud Konect Service\", \r\n                            \"servicePermissions\": [\"add\", \"view\", \"delete\"]\r\n                        }\r\n                    ]\r\n                }\r\n            ] \r\n        }\r\n    ],\r\n    \"createdBy\" : \"Application Super Admin\",\r\n    \"createdOn\" : \"2023-03-02\",\r\n    \"associatedBusinessEntity\" : \"ABG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/addrole",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"addrole"
+					]
+				},
+				"description": "This route is used to add a new role and its permissions into our database.\r\nSending all the required fields into the req body as given in the example.\r\nThis route will require an authentication token to send the data."
+			},
+			"response": []
+		},
+		{
+			"name": "RBAC => Get Single Role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA5ODM3ZGY2YzU3ZDA1MTY0ZmFkZTgiLCJpYXQiOjE2NzkyOTc3MTV9.4VKaqyWk93rJ234SxxACl2oQvUTn0-mkjNRXcapEXhs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/getsinglerole/64180cd5ea359710a45990c8",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"getsinglerole",
+						"64180cd5ea359710a45990c8"
+					]
+				},
+				"description": "This get routes find the individual role and its pemissions using its unique id.\r\nWe are sending the role id in the req params. \r\nThis route will require an authentication token to validate the user."
+			},
+			"response": []
+		},
+		{
+			"name": "RBAC => Update the Role and its Permissions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGV0YWlscyI6eyJfaWQiOiI2NDA1YzQ4NDk4ZDQwYjI3MzZiNThmNGYiLCJ1c2VyTmFtZSI6Imthcm1hbnNodXN3YW1pIiwidXNlckVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOjk0NTY3Njc2NzYsInVzZXJSb2xlIjoiQWRtaW4iLCJidXNpbmVzc0VudGl0eSI6IkFCRyIsImNyZWF0ZWRCeU5hbWUiOiJBQkdfQWRtaW4iLCJjcmV0ZWRPbiI6IjIwMjMtMDMtMDZUMTA6NDY6MjguMDI5WiIsInVwZGF0ZWRCeSI6W10sInVwZGF0ZWRPbiI6W10sInVzZXJTdGF0dXMiOiJhY3RpdmUiLCJfX3YiOjB9LCJpYXQiOjE2Nzg0NDE1OTV9.kMJ_QBjDzzgSlvehFN-c8lS1_YmwJmbx7J_DPv6X6IA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roleName\": \"Super Admin\",\r\n    \"permissions\": [\r\n        { \r\n            \"moduleName\": \"serviceCatelogue\", \r\n            \"serviceGroup\": [\r\n                { \r\n                    \"serviceGroupName\": \"securityServices\", \r\n                    \"serviceName\" : \"dataLeackage\", \r\n                    \"servicePermissions\": [\"add\", \"view\", \"delete\"] \r\n                }\r\n            ] \r\n        }\r\n    ],\r\n    \"createdBy\" : \"Super Admin\",\r\n    \"createdOn\" : \"2023-03-02\",\r\n    \"associatedBusinessEntity\" : \"ABG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/updaterole/6409917d628bce566cb23f90",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"updaterole",
+						"6409917d628bce566cb23f90"
+					]
+				},
+				"description": "This route is used to update the values of a role and its permissions. \r\nThe condition rn here is only that person can update it who has created this role. \r\nSending the role id in the req params and rest all the data in the req body.\r\nThis route will require an authentication token to validate and perform the changes."
+			},
+			"response": []
+		},
+		{
+			"name": "add aws service order",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cloud\": \"AZURE\",\r\n    \"resource_group_name\": \"Demo-ABG1\",\r\n                    \"location\": \"East US\",\r\n                    \"virtual_network_name\": \"Demo-ABG\",\r\n                    \"virtual_network_address_space\": [\"10.0.0.0/16\"],\r\n                    \"subnet_name\": \"Demo-ABG\",\r\n                    \"subnet_address_prefixes\": [\"10.0.1.0/24\"],\r\n                    \"public_ip_name\": \"true\",\r\n                    \"network_interface_name\": \"Demo-ABG\",\r\n                    \"vm_name\": \"Demo-ABG\",\r\n                    \"vm_admin_username\": \"testadmin\",\r\n                    \"vm_admin_password\": \"Password1234!\",\r\n                    \"image_publisher\": \"Canonical\",\r\n                    \"image_offer\": \"UbuntuServer\",\r\n                    \"image_sku\": \"16.04-LTS\",\r\n                    \"image_version\": \"latest\",\r\n                    \"os_disk_name\": \"my-vm-os-disk\",\r\n                    \"os_disk_caching\": \"ReadWrite\",\r\n                    \"os_disk_create_option\": \"FromImage\",\r\n                    \"os_disk_managed_disk_type\": \"Standard_LRS\",\r\n                    \"size\": \"Standard_DS1_v2\",\r\n                    \"key_name\": \"user1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/addazureorders",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"addazureorders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000"
+		}
+	]
+}

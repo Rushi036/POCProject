@@ -1,0 +1,14 @@
+// Styles
+
+// Main styles
+
+@import './bootstrap.scss';
+@import './app.scss';
+
+// Shreyu Icons
+@import './icons.scss';
+
+//Tailwind css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

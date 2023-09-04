@@ -1,0 +1,17 @@
+.roleName {
+  width: 20rem;
+}
+.addButton {
+  width: max-content;
+  padding: 0 0 0 5px;
+}
+.bubmitButton {
+  margin: 10px 0 0 0;
+}
+.add_role_label {
+  width: 9rem;
+  padding: 7px 0 0 20px;
+}
+.justify_between {
+  justify-content: space-between;
+}
