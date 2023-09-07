@@ -17,6 +17,7 @@ import Orders from "./Orders";
 
 // dummy data
 import { orderDetails, topPerformers, tasks, chatMessages } from "./data";
+import Editor from "../../../components/Editor/Editor";
 
 const EcommerceDashboard = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const EcommerceDashboard = () => {
         <Col> */}
           <div className="page-title-box">
             <h4 className="page-title">Dashboard</h4>
+            <Editor />
             {/* <div className="page-title-right">
               <form className="float-md-end mt-3 mt-md-0">
                 <Row className="g-2">

@@ -35,6 +35,11 @@ const ProfileDropdown = (props: ProfileDropdownProps) => {
         id="dropdown-profile"
         as="a"
         onClick={toggleDropdown}
+        style={{display: "flex",
+          flexWrap: "nowrap",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center"}}
         className={classNames(
           "nav-link",
           "nav-user",

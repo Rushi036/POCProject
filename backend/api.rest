@@ -10,10 +10,10 @@ POST http://localhost:5000/api/register
 Content-Type: application/json
 
 {
-    "userName" : "POC User", 
-    "userEmail" : "adminpoc@gmail.com", 
+    "userName" : "admin", 
+    "userEmail" : "adminmain@gmail.com", 
     "phoneNumber" : 9456767676, 
-    "userRole" : "POC", 
+    "userRole" : "Application Super Admin", 
     "userPassword" : "Admin@123", 
     "businessEntity" : "ABG", 
     "createdBy" : {
@@ -31,7 +31,7 @@ POST http://localhost:5000/api/login
 Content-Type: application/json
 
 {
-    "userEmail" : "adminPOC@gmail.com",
+    "userEmail" : "adminmain@gmail.com",
     "userPassword" : "Admin@123"
 }
 

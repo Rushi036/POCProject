@@ -227,7 +227,7 @@ const Topbar = ({
             </div>
           )}
 
-          <ul className="list-unstyled topnav-menu float-end mb-0">
+          <ul className="list-unstyled topnav-menu float-end mb-0" style={{display:"flex", alignItems:"center"}}>
             <li className="d-none d-lg-block">
               <TopbarSearch items={SearchResults} />
             </li>

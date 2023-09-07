@@ -39,7 +39,8 @@
         >li {
             >a {
                 color: $menu-item;
-                display: block;
+                display: flex;
+                align-items: center;
                 padding: 12px 25px;
                 position: relative;
                 transition: all 0.4s;
